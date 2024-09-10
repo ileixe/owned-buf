@@ -532,7 +532,7 @@ impl OwnedCursor {
 
         // SAFETY: we do not de-initialize any of the elements of the slice
         unsafe {
-            MaybeUninit::write_slice(&mut self.as_mut()[..data.len()], data);
+            MaybeUninit::copy_from_slice(&mut self.as_mut()[..data.len()], data);
         }
 
         // SAFETY: We just added the entire contents of data.
